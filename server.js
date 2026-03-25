@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'Public')));
 
-const db = new sqlite3.Database('./database.db');
+const db = new sqlite3.Database(path.join(__dirname, 'database.db'));
 db.run(`CREATE TABLE IF NOT EXISTS contacts (
     id INTEGER PRIMARY KEY AUTOINCREMENT, 
     name TEXT, 
@@ -40,8 +40,8 @@ app.delete('/api/delete/:id', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('--- JOHAN JOHNSON SECURITY PORTFOLIO READY ---');
-    console.log('UI: http://localhost:3000');
-    console.log('Database Endpoint: http://localhost:3000/api/messages');
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
