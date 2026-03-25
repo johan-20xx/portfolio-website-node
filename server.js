@@ -15,8 +15,8 @@ db.exec(`
         email TEXT,
         message TEXT,
         date DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-`).run();
+    );
+`);
 
 // Submit contact form
 app.post('/api/contact', (req, res) => {
